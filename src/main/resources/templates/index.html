@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Library</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div align="center">
+		<div sec:authorize="isAuthenticated()">
+
+
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#" th:href="@{/}">Library
+							Dashboard</a>
+					</div>
+				</div>
+			</nav>
+			<br> 
+			<br> 
+			<br> 
+			<br> Welcome <b>
+			
+			<!--  To diplay the username we can use this as well -
+			<span class="nav-link">[[${#request.remoteUser}]]</span>
+			-->
+			
+			
+			<span sec:authentication="name">Username</span></b> &nbsp; 
+				<i><span sec:authentication="principal.authorities">Roles</span></i>
+		</div>
+
+		<br>
+
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+
+		<br>
+
+
+		<div sec:authorize="hasAnyAuthority('ADMIN')">
+			<!-- <a href="/userdetails">User Details</a>-->
+			<form action="/userdetails">
+				<input type="submit" value="User Details" />
+			</form>
+		</div>
+
+        <br>
+
+        <div sec:authorize="hasAnyAuthority('ADMIN')">
+			<!-- <a href="/userdetails">User Details</a>-->
+			<form action="/borrowedbooks">
+				<input type="submit" value="Borrowed Books Details" />
+			</form>
+		</div>
+       
+
+
+		<h1>Book List</h1>
+		<div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">
+			<!--<a href="/new">Add New Book</a>-->
+			<form action="/new">
+				<input type="submit" value="Add New Book" />
+			</form>
+		</div>
+		<br>
+		<table border="1" cellpadding="10" class="table">
+			<thead>
+				<tr>
+					<th>Book ID</th>
+					<th>Book Name</th>
+					<th>Author</th>
+					<th>Category</th>
+					<th>Book Source</th>
+					<th sec:authorize="hasAnyAuthority('USER')">Borrow</th>
+					<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Edit/Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${listBook}">
+					<td th:text="${book.bid}">Book ID</td>
+					<td th:text="${book.bname}">Book Name</td>
+					<td th:text="${book.bauthor}">Author</td>
+					<td th:text="${book.bcategory}">Category</td>
+
+					<td th:text="${book.blink}">Book Source</td>
+
+
+					<td><div sec:authorize="hasAnyAuthority('USER')">
+							<a th:href="@{'/borrowed/' + ${book.bid}}">Issue this Book</a>
+						</div></td>
+
+
+					<td>
+						<div sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
+							<a th:href="@{'/edit/' + ${book.bid}}">Edit</a>
+						</div> &nbsp;
+						<div sec:authorize="hasAnyAuthority('ADMIN')">
+							<a th:href="@{'/delete/' + ${book.bid}}">Delete</a>
+						</div>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

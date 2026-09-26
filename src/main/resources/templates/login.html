@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Login page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
+					Login Module</a>
+			</div>
+		</div>
+	</nav>
+    <br>
+    <br>
+    <br>
+    <br>
+	<form th:action="@{/login}" method="post"
+		style="max-width: 350px; margin: 0 auto;">
+		<div class="border border-secondary p-3 rounded">
+			<h1>Login</h1>
+			<!-- error message -->
+					<div th:if="${param.error}">
+						<div class="alert alert-danger">Invalid username or
+							password.</div>
+					</div>
+				
+					<!-- logout message -->
+					<div th:if="${param.logout}">
+						<div class="alert alert-info">You have been logged out.</div>
+					</div>
+			<div class="form-group">
+				<label for="username">Username:</label> 
+				<input type="text" class="form-control" placeholder="Enter username" id="username"
+					name="username">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password:</label> 
+				<input type="password" class="form-control" placeholder="Enter password" id="password"
+					name="password">
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label"> 
+				<inputclass="form-check-input" type="checkbox"> Remember me	</label>
+			</div>
+			
+			<div>
+			    New User ? <a href="/registration"> Register Here </a>
+			</div>
+			
+			
+			
+			<div class="form-group">
+						<button type="submit" class="btn btn-success">Submit</button>
+			</div>
+			
+			
+			<!--  <button type="submit" class="btn btn-primary">Submit</button>  -->
+		</div>
+	</form>
+</body>
+</html>

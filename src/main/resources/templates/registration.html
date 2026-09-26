@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Registration and
+					Login Module</a>
+			</div>
+		</div>
+	</nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+	<!-- Create HTML registration form 
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+				<!-- success message 
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully registered!</div>
+				</div>
+
+				<h1>Registration</h1>
+
+				<form th:action="@{/registration}" method="post" th:object="${user}">
+
+					<div class="form-group">
+						<label class="control-label" for="username"> Email </label> <input
+							id="username" class="form-control" th:field="*{username}" required
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Password </label> <input
+							id="password" class="form-control" type="password"
+							th:field="*{password}" required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Register</button>
+						<span>Already registered? <a href="/login" th:href="@{/login}">Login
+								here</a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>-->
+	<form th:action="@{/registration}" method="post"
+		style="max-width: 350px; margin: 0 auto;">
+		<div class="border border-secondary p-3 rounded">
+			<h1>Registration Form</h1>
+			
+			<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully registered!</div>
+				</div>
+				
+			<div th:if="${param.failure}">
+				<div class="alert alert-info">Username already exists.<br>Try a different one.</div>
+			</div>
+				
+			<div class="form-group">
+				<label for="username">First Name:</label> 
+				<input type="text" class="form-control" placeholder="Enter First Name" id="fname"
+					name="fname">
+			</div>	
+			
+			<div class="form-group">
+				<label for="username">Last Name:</label> 
+				<input type="text" class="form-control" placeholder="Enter Last Name" id="lname"
+					name="lname">
+			</div>
+				
+			<div class="form-group">
+				<label for="username">City:</label> 
+				<input type="text" class="form-control" placeholder="Enter Last Name" id="city"
+					name="city">
+			</div>
+				
+			<div class="form-group">
+				<label for="username">Username:</label> 
+				<input type="text" class="form-control" placeholder="Enter username" id="username"
+					name="username">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password:</label> 
+				<input type="password" class="form-control" placeholder="Enter password" id="password"
+					name="password">
+			</div>
+			<div>
+			    Already Registered ? <a href="/login"> Login Here </a>
+			</div>
+			
+			
+			
+			<div class="form-group">
+						<button type="submit" class="btn btn-success">Register</button>
+			</div>
+			
+			
+			<!--  <button type="submit" class="btn btn-primary">Submit</button>  -->
+		</div>
+	</form>
+</body>
+</html>

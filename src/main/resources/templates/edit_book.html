@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Book</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+     
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Edit Existing Book</a>
+			</div>
+		</div>
+	</nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+	<div align="center">
+		<h1>Edit Book</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${book}"
+			method="post">
+			<table border="0">
+				<tr>
+					<td>Book ID:</td>
+					<td><input type="text" th:field="*{bid}" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Book Name:</td>
+					<td><input type="text" th:field="*{bname}" /></td>
+				</tr>
+				<tr>
+					<td>Author:</td>
+					<td><input type="text" th:field="*{bauthor}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Link:</td>
+					<td><input type="text" th:field="*{blink}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Category:</td>
+					<td><input type="text" th:field="*{bcategory}" /></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Details</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">User Details</a>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+	<table border="1" cellpadding="10" class="table">
+		<thead>
+			<tr>
+				<th>User ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>City</th>
+				<th>Username</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${listUser}">
+				<td th:text="${user.id}">User ID</td>
+				<td th:text="${user.fname}">First Name</td>
+				<td th:text="${user.lname}">Last Name</td>
+				<td th:text="${user.city}">City</td>
+				<td th:text="${user.username}">Username</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<form action="/">
+		<input type="submit" value="Back" />
+	</form>
+
+	<!--  <div>
+		<!-- <button type="button" value="Back">
+			<a href="/">Back</a>
+		<!--  </button>
+	</div>-->
+
+</body>
+</html>
